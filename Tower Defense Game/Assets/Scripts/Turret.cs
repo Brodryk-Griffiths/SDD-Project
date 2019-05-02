@@ -9,10 +9,11 @@ public class Turret : MonoBehaviour
 
     public Transform PartToRotate;
     
+    public float RotateSpeed = 10f;
     // Start is called before the first frame update
     void Start()
     {
-        InvokeRepeating("UpdateTarget", 0f, 0.5f); //Calls UpdateTarget twice a second
+        InvokeRepeating("UpdateTarget", 0f, 0.25f); //Calls UpdateTarget twice a second
     }
 
     //Tracking enemies
@@ -54,7 +55,7 @@ public class Turret : MonoBehaviour
         //Rotation
         Vector3 dir = target.position - transform.position;
         Quaternion lookRotation = Quaternion.LookRotation(dir);
-        Vector3 rotation = lookRotation.eulerAngles;
+        Vector3 rotation = Quaternion.Lerp(PartToRotate.rotation, lookRotation, Time.deltaTime * RotateSpeed).eulerAngles;
         PartToRotate.rotation = Quaternion.Euler (0f, rotation.y, 0f);       
     }
 
