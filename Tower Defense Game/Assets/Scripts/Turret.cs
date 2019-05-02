@@ -4,9 +4,10 @@ using System.Collections.Generic;
 
 public class Turret : MonoBehaviour
 {
-    public Transform target;
+    private Transform target;
     public float range = 10f;
-    //public string enemyTag = "Enemy";
+
+    public Transform PartToRotate;
     
     // Start is called before the first frame update
     void Start()
@@ -50,7 +51,11 @@ public class Turret : MonoBehaviour
         if (target == null)
             return;
 
-        
+        //Rotation
+        Vector3 dir = target.position - transform.position;
+        Quaternion lookRotation = Quaternion.LookRotation(dir);
+        Vector3 rotation = lookRotation.eulerAngles;
+        PartToRotate.rotation = Quaternion.Euler (0f, rotation.y, 0f);       
     }
 
     //Draw range wireframe
