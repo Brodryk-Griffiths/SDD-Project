@@ -12,7 +12,7 @@ public class WaveSpawner : MonoBehaviour
 
   public Text WaveCounterText;
   private int waveIndex = 0;
-
+  
   public void StartWave ()
   {
     // if (countdown <= 0f)
