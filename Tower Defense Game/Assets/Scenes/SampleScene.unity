@@ -10887,7 +10887,7 @@ PrefabInstance:
     - target: {fileID: 2858424256251836694, guid: f07b6d93c5843bb47aa71af8aef37a44,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: PurchaseAnotherTurret
+      value: SelectLaserTurret
       objectReference: {fileID: 0}
     - target: {fileID: 2858424256251836695, guid: f07b6d93c5843bb47aa71af8aef37a44,
         type: 3}
@@ -11199,6 +11199,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbeef8ddc0325ae409f26c288a30de66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  standardTurret:
+    prefab: {fileID: 4435757929874225802, guid: a4dbd062fc49ec54981c8de5e4213378,
+      type: 3}
+    cost: 100
+  laserTurret:
+    prefab: {fileID: 6016678587854388161, guid: 09cd84e07f408df40b841b08a74ec802,
+      type: 3}
+    cost: 250
 --- !u!1001 &1895654772
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12866,6 +12874,11 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1879989980}
+    - target: {fileID: 2858424256251836694, guid: f07b6d93c5843bb47aa71af8aef37a44,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SelectStandardTurret
+      objectReference: {fileID: 0}
     - target: {fileID: 2858424256251836695, guid: f07b6d93c5843bb47aa71af8aef37a44,
         type: 3}
       propertyPath: m_PreferredWidth
