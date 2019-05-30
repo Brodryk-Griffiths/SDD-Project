@@ -19,22 +19,38 @@ public class CameraController : MonoBehaviour
         if (!doMovement)
             return;
 
-        if (Input.GetKey("w") || Input.mousePosition.y >= Screen.height - panBorderThickness)
+        if (Input.GetKey("w") || Input.GetKey("up"))
         {
             transform.Translate(Vector3.forward * panSpeed * Time.deltaTime, Space.World);
         }
-        if (Input.GetKey("s") || Input.mousePosition.y <= panBorderThickness)
+        if (Input.GetKey("s") || Input.GetKey("down"))
         {
             transform.Translate(Vector3.back * panSpeed * Time.deltaTime, Space.World);
         }
-        if (Input.GetKey("d") || Input.mousePosition.x >= Screen.width - panBorderThickness)
+        if (Input.GetKey("d") || Input.GetKey("right"))
         {
             transform.Translate(Vector3.right * panSpeed * Time.deltaTime, Space.World);
         }
-        if (Input.GetKey("a") || Input.mousePosition.x <= panBorderThickness)
+        if (Input.GetKey("a") || Input.GetKey("left"))
         {
             transform.Translate(Vector3.left * panSpeed * Time.deltaTime, Space.World);
         }
+        //if (Input.mousePosition.y >= Screen.height - panBorderThickness)
+        //{
+        //    transform.Translate(Vector3.forward * panSpeed * Time.deltaTime, Space.World);
+        //}
+        //if (Input.mousePosition.y <= panBorderThickness)
+        //{
+        //    transform.Translate(Vector3.back * panSpeed * Time.deltaTime, Space.World);
+        //}
+        //if (Input.mousePosition.x >= Screen.width - panBorderThickness)
+        //{
+        //    transform.Translate(Vector3.right * panSpeed * Time.deltaTime, Space.World);
+        //}
+        //if (Input.mousePosition.x <= panBorderThickness)
+        //{
+        //    transform.Translate(Vector3.left * panSpeed * Time.deltaTime, Space.World);
+        //}
 
         float scroll = Input.GetAxis("Mouse ScrollWheel");
 
