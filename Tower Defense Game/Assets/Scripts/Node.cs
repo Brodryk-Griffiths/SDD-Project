@@ -29,29 +29,20 @@ public class Node : MonoBehaviour
     {
         if (!buildManager.CanBuild)
             return;
-
-
         if (turret != null)
         {
             Debug.Log("Can't build there!- TODO: Display on screen.");
             return;
         }
-
         //Build a turret
-        
         buildManager.BuildTurretOn (this);
-
-        //GameObject turretToBuild = BuildManager.instance.GetTurretToBuild();
-        //turret = (GameObject)Instantiate(turretToBuild, transform.position + positionOffset, transform. rotation);
     }
     void OnMouseEnter ()
     {
         if (!buildManager.CanBuild)
             return;
-        
         rend.material.color = hoverColor;
     }
-
     void OnMouseExit ()
     {
         rend.material.color = startColor;

@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class SceneLoader : MonoBehaviour
 {
+    //Called from buttons to load a scene
     public void GoToLevel(string level)
     {
         SceneManager.LoadScene(level);
