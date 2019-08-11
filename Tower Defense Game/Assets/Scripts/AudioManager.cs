@@ -11,6 +11,7 @@ public class AudioManager : MonoBehaviour
     public static float musicVolume = 1f;
     private AudioSource musicAudioSource;
     
+    
     public static AudioManager instance;
 
     void Awake ()
@@ -33,7 +34,7 @@ public class AudioManager : MonoBehaviour
     {
         musicAudioSource.volume = musicVolume;
     }
-
+    
     public void toggleMute ()
     {
         if (sfxEnabled == 1)

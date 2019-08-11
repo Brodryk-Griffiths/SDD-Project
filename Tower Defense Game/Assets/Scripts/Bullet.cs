@@ -44,6 +44,6 @@ public class Bullet : MonoBehaviour
         //Destroys bullet, does 1 damage to enemy and adds $5 to player funds
         Destroy(gameObject);
         target.GetComponent<enemy>().health -= damage;
-        PlayerStats.Money += 2;
+        
     }
 }

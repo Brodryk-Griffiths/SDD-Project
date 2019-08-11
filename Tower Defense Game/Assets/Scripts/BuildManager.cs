@@ -11,12 +11,14 @@ public class BuildManager : MonoBehaviour
 
     public GameObject standardTurretPrefab;
     public GameObject anotherTuretPrefab;
+    public NodeUI nodeUI;
 
-    private TurretBlueprint turretToBuild;
+    public TurretBlueprint turretToBuild;
+    private Node selectedNode;
     //Enures that a turret can be built on selected node
     public bool CanBuild { get { return turretToBuild != null; } }
 
-    public void BuildTurretOn (Node node)
+    /*public void BuildTurretOn (Node node)
     {
         if (PlayerStats.Money < turretToBuild.cost)
             {
@@ -31,10 +33,28 @@ public class BuildManager : MonoBehaviour
             Debug.Log ("Turret has been Built! Remaiing money: " + PlayerStats.Money);
             turretToBuild = null;
             
-    }
+    }*/
 
-     public void SelectTurretToBuild(TurretBlueprint turret)
+    public void SelectNode (Node node)
+    {
+        if (selectedNode == node)
+        {
+            DeselectNode();
+            return;
+        }
+        selectedNode = node;
+        turretToBuild = null;
+
+        nodeUI.SetTarget(node);
+    }
+    public void DeselectNode()
+    {
+        nodeUI.Hide();
+        selectedNode = null;
+    }
+    public void SelectTurretToBuild(TurretBlueprint turret)
     {
         turretToBuild = turret;
+        DeselectNode();
     }
 }

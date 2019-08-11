@@ -28,6 +28,7 @@ public class enemy : MonoBehaviour
     if (health <= 0)//Destroys enemy when health zero
     {
       deleteEnemy();
+      PlayerStats.Money += 2;
       return;
     }
     
@@ -43,6 +44,14 @@ public class enemy : MonoBehaviour
     else if (health <= 3)
     {
       thisRend.material.SetColor("_Color", Color.yellow);
+    }
+    else if (health <= 4)
+    {
+      thisRend.material.SetColor("_Color", Color.green);
+    }
+    else if (health <= 5)
+    {
+      thisRend.material.SetColor("_Color", Color.magenta);
     }
     
   }

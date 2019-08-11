@@ -9,6 +9,7 @@ public class WaveSpawner : MonoBehaviour
   public Text WaveCounterText;
   private int waveIndex = 0;
   public static int activeEnemies = 0;
+  private bool CanStartWave = true;
 
   private int enemyNo = 0;
   private int enemycount = 0;
@@ -17,8 +18,9 @@ public class WaveSpawner : MonoBehaviour
   
   public void StartWave ()
   {
-      if (activeEnemies == 0)
+      if (CanStartWave == true)
       {
+        CanStartWave = false;
         StartCoroutine(SpawnWave());
       }
   }
@@ -34,13 +36,15 @@ public class WaveSpawner : MonoBehaviour
       SpawnEnemy();
       yield return new WaitForSeconds(waitTime);
     }
+    CanStartWave = true;
   }
 
   void SpawnEnemy()
   {
     Transform enemyball = (Transform)Instantiate(enemyPrefab, SpawnPoint.position, SpawnPoint.rotation);
-    if (waveIndex >= 20) 
+    if (waveIndex >= 30) 
     {
+      enemyball.GetComponent<enemy>().health += 3f;
       waitTime = 0.2f;
       if (enemycount >= 2)
       {
@@ -48,18 +52,30 @@ public class WaveSpawner : MonoBehaviour
         enemycount = 0;
       }
     }
-    if (waveIndex >= 10) 
+    if (waveIndex >= 20) 
     {
+      enemyball.GetComponent<enemy>().health += 2f;
+      waitTime = 0.2f;
+      if (enemycount >= 2)
+      {
+        enemyball.GetComponent<enemy>().health += 1f;
+        enemycount = 0;
+      }
+    }
+    if (waveIndex >= 15)
+    {
+      enemyball.GetComponent<enemy>().health += 1f;
       waitTime = 0.3f;
       if (enemycount >= 3)
       {
         enemyball.GetComponent<enemy>().health += 1f;
         enemycount = 0;
       }
+    }
     if (waveIndex >=5)
     {
       waitTime = 0.4f;
     }
-    }
+    
   }
 }
