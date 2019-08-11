@@ -15,11 +15,32 @@ public class Turret : MonoBehaviour
     public float RotateSpeed = 10f;
     public GameObject bulletPreFab;
     public Transform firePoint;
+    public AudioClip fireSound;
+    public AudioClip buildSound;
+    private AudioSource audioSource;
+    
     // Start is called before the first frame update
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
+        audioSource.volume = AudioManager.sfxVolume;
         InvokeRepeating("UpdateTarget", 0f, 0.25f); //Calls UpdateTarget twice a second
+        soundEffect(buildSound);
+        
+        
     }
+    void soundEffect(AudioClip sound)
+    {
+        if (AudioManager.sfxEnabled == 1)
+        {
+            audioSource.PlayOneShot(sound);
+        }
+        else 
+        {
+            return;
+        }
+    }
+
     //Tracking enemies
     void UpdateTarget ()
     {
@@ -69,8 +90,9 @@ public class Turret : MonoBehaviour
     void Shoot ()
     {
         //Creates bullet at the end of turret barrel.
-        GameObject bulletGO = (GameObject)Instantiate (bulletPreFab, firePoint.position, firePoint.rotation);
+        GameObject bulletGO = (GameObject)Instantiate (bulletPreFab, firePoint.position, firePoint.rotation); 
         Bullet bullet = bulletGO.GetComponent<Bullet>();
+        soundEffect(fireSound);
 
         //when a bullet exists, it is set to chase the current target. This target recieved by Bullet script
         if (bullet != null)

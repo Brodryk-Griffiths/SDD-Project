@@ -5,6 +5,7 @@ public class Bullet : MonoBehaviour
 
     private Transform target;    
     public float speed = 70f;
+    public float damage = 1f;
     public GameObject impactEffect;
     public void Chase (Transform _target)
     {
@@ -40,9 +41,9 @@ public class Bullet : MonoBehaviour
         GameObject effectIns = (GameObject)Instantiate(impactEffect, transform.position, transform.rotation);
         //waits 2 sec before destroying particle effect
         Destroy(effectIns, 2f);
-        //Destroys bullet, does 1 damage to enemy and adds $10 to player funds
+        //Destroys bullet, does 1 damage to enemy and adds $5 to player funds
         Destroy(gameObject);
-        target.GetComponent<enemy>().health -= 1;
-        PlayerStats.Money += 10;
+        target.GetComponent<enemy>().health -= damage;
+        PlayerStats.Money += 2;
     }
 }

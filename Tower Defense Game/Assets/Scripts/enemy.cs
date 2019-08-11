@@ -2,7 +2,7 @@
 public class enemy : MonoBehaviour
 {
   public float speed = 10f;
-  public int health = 2;
+  public float health = 2f;
   Renderer thisRend;
   private Transform target;
   private int wavepointIndex = 0;
@@ -12,6 +12,7 @@ public class enemy : MonoBehaviour
     target = Waypoints.points[0];
     playerStats = PlayerStats.instance;
     thisRend = GetComponent<Renderer>();
+    WaveSpawner.activeEnemies += 1;
   }
   void Update ()
   {
@@ -23,45 +24,46 @@ public class enemy : MonoBehaviour
       GetNextWaypoint();
     }
     //Changes colour to provide visual representation of enemies health
-    if (health == 3)
+    
+    if (health <= 0)//Destroys enemy when health zero
     {
-      thisRend.material.SetColor("_Color", Color.yellow);
+      deleteEnemy();
+      return;
     }
-    else if (health == 2)
-    {
-      thisRend.material.SetColor("_Color", Color.cyan);
-    }
-   
-    else if (health == 1)
+    
+    else if (health <= 1)
     {
       thisRend.material.SetColor("_Color", Color.red);
     }
-
-    else //Destroys enemy when health zero
+    else if (health <= 2)
     {
-      Destroy(gameObject);
-      return;
+      thisRend.material.SetColor("_Color", Color.cyan);
     }
+
+    else if (health <= 3)
+    {
+      thisRend.material.SetColor("_Color", Color.yellow);
+    }
+    
   }
 
   void GetNextWaypoint()
   {
     if (wavepointIndex >= Waypoints.points.Length - 1)
     {
-      Destroy(gameObject);
-      if (health == 2)
-      {
-        playerStats.PlayerHealth -= 2;
-        return;
-      }
-      else 
-      {
-        playerStats.PlayerHealth -= 1;
-        return;
-      }
+      deleteEnemy();
+      //Decreases Players health when an enemy crosses final checkpoint
+      playerStats.PlayerHealth -= (int)health;
+      
       return;
     }
     wavepointIndex++;
     target = Waypoints.points[wavepointIndex];
+  }
+
+  void deleteEnemy()
+  {
+    Destroy(gameObject);
+    WaveSpawner.activeEnemies -= 1;
   }
 }

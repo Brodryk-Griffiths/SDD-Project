@@ -10,7 +10,7 @@ public class PlayerStats : MonoBehaviour
     public Text PlayerMoneyText;
     public Text PlayerHealthText;
     public static int Money = 0;
-    public int startMoney = 400;
+    public int startMoney = 150;
     public int PlayerHealth = 100;
     public static PlayerStats instance;
     void Awake ()
