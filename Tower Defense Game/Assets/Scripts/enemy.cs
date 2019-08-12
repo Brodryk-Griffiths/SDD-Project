@@ -12,7 +12,7 @@ public class enemy : MonoBehaviour
     target = Waypoints.points[0];
     playerStats = PlayerStats.instance;
     thisRend = GetComponent<Renderer>();
-    WaveSpawner.activeEnemies += 1;
+    WaveSpawner.instance.SetActiveEnemies();
   }
   void Update ()
   {
@@ -28,7 +28,7 @@ public class enemy : MonoBehaviour
     if (health <= 0)//Destroys enemy when health zero
     {
       deleteEnemy();
-      PlayerStats.Money += 2;
+      PlayerStats.Money += 2.5f;
       return;
     }
     
@@ -72,7 +72,7 @@ public class enemy : MonoBehaviour
 
   void deleteEnemy()
   {
+    WaveSpawner.instance.RemoveActiveEnemies();
     Destroy(gameObject);
-    WaveSpawner.activeEnemies -= 1;
   }
 }

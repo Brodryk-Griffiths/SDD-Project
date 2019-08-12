@@ -76,12 +76,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1515a5bc5a3438045a7113f4cbb9756e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 30
+  range: 32
   fireRate: 2
   enemyTag: Enemy
   PartToRotate: {fileID: 5468052461881423372}
   RotateSpeed: 10
-  bulletPreFab: {fileID: 2686766354483743162, guid: aeaef176d6716124399757f968207292,
+  bulletPreFab: {fileID: 2686766354483743162, guid: 2482b2d5d6f7e4840ba89a53bd884627,
     type: 3}
   firePoint: {fileID: 416598475}
   fireSound: {fileID: 8300000, guid: 52eee3472cd0d7744a172523797ea3ea, type: 3}

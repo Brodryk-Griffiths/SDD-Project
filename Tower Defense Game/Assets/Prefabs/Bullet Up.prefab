@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 6674639513691542895}
   - component: {fileID: 5658405491631965667}
   - component: {fileID: 9189875390027053513}
-  - component: {fileID: 2240072744032875680}
+  - component: {fileID: 4502420458072576218}
   m_Layer: 0
-  m_Name: LaserBullet
+  m_Name: Bullet Up
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -78,7 +78,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &2240072744032875680
+--- !u!114 &4502420458072576218
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -91,6 +91,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 70
-  damage: 1
+  damage: 1.5
   impactEffect: {fileID: 6411556843366338049, guid: 3f46cc5e0cc57694b8864ca87d9005eb,
     type: 3}

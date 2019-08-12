@@ -8,10 +8,11 @@ public class AudioManager : MonoBehaviour
     public static int musicEnabled = 1;
 
     public static float sfxVolume = 1f;
-    public static float musicVolume = 1f;
+    public static float musicVolume = 0.15f;
     private AudioSource musicAudioSource;
-    
-    
+    private static AudioSource sfxAudioSource;
+    public static AudioClip buttonClick;    
+    public AudioClip _buttonClick;
     public static AudioManager instance;
 
     void Awake ()
@@ -28,11 +29,24 @@ public class AudioManager : MonoBehaviour
     }
     void Start()
     {
-        musicAudioSource = GetComponent<AudioSource>();
+        AudioSource[] audios = GetComponents<AudioSource>();
+        musicAudioSource = audios[0];
+        sfxAudioSource = audios[1];
+
+        buttonClick = _buttonClick;
     }
     void Update()
     {
-        musicAudioSource.volume = musicVolume;
+        if (musicEnabled == 1)
+        {
+            musicAudioSource.volume = musicVolume;
+        }
+        else if (musicEnabled == 0)
+        {
+            musicAudioSource.volume = 0f;
+        }
+        
+        sfxAudioSource.volume = sfxVolume;
     }
     
     public void toggleMute ()
@@ -40,22 +54,22 @@ public class AudioManager : MonoBehaviour
         if (sfxEnabled == 1)
         {
             sfxEnabled -= 1;
-            return;
+            
         }
         else if (sfxEnabled == 0)
         {
             sfxEnabled += 1;
-            return;
+            
         }
         if (musicEnabled == 1)
         {
             musicEnabled -= 1;
-            return;
+            
         }
         else if (musicEnabled == 0)
         {
             musicEnabled += 1;
-            return;
+            
         }
     }
     public void adjSfxVolume(float newVol)
@@ -67,6 +81,12 @@ public class AudioManager : MonoBehaviour
         musicVolume = newMVol;
     }
     
-    
+    public static void buttonSound ()
+    {
+        if (sfxEnabled == 1)
+        {
+            sfxAudioSource.PlayOneShot(buttonClick);
+        }
+    }
     
 }

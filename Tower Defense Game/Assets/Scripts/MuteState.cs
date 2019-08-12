@@ -14,6 +14,7 @@ public class MuteState : MonoBehaviour
     }
     public void flipButtonThing()
     {
+        AudioManager.buttonSound();
         audioManager.toggleMute(); 
         if (buttonMute == 0)
         {

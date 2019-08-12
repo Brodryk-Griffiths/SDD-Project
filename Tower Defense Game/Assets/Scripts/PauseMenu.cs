@@ -16,6 +16,7 @@ public class PauseMenu : MonoBehaviour
 
     public void Pause ()
     {
+        AudioManager.buttonSound();
         pauseMenuUI.SetActive(true);
         UICanvas.SetActive(false);
         Time.timeScale = 0f;
@@ -24,6 +25,7 @@ public class PauseMenu : MonoBehaviour
 
     public void Resume ()
     {
+        AudioManager.buttonSound();
         pauseMenuUI.SetActive(false);
         UICanvas.SetActive(true);
         Time.timeScale = 1f;
@@ -32,6 +34,7 @@ public class PauseMenu : MonoBehaviour
 
     public void Menu ()
     {
+        AudioManager.buttonSound();
         SceneManager.LoadScene("Main Menu");
         Time.timeScale = 1f;
     }

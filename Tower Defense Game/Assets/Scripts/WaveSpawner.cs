@@ -4,29 +4,48 @@ using UnityEngine.UI;
 
 public class WaveSpawner : MonoBehaviour
 {
+  public static WaveSpawner instance;
   public Transform enemyPrefab;
   public Transform SpawnPoint;
   public Text WaveCounterText;
   private int waveIndex = 0;
-  public static int activeEnemies = 0;
+  public int activeEnemies = 0;
   private bool CanStartWave = true;
 
   private int enemyNo = 0;
   private int enemycount = 0;
   private float waitTime = 0.5f;
 
-  
+  void Awake()
+  {
+    instance = this;
+  }
+  public void SetActiveEnemies()
+  {
+    activeEnemies += 1;
+  }
+  public void RemoveActiveEnemies()
+  {
+    activeEnemies -= 1;
+  }
   public void StartWave ()
   {
+      
       if (CanStartWave == true)
       {
+        if (activeEnemies == 0)
+        {
+          ScoreStore.instance.addWaveCount(waveIndex);
+        }
         CanStartWave = false;
+        AudioManager.buttonSound();
         StartCoroutine(SpawnWave());
       }
   }
   IEnumerator SpawnWave ()
   {
     waveIndex++;
+    
     enemycount = 0;
     WaveCounterText.text = "Wave: " + waveIndex.ToString();
     enemyNo = (int)(waveIndex * 1.5f);
@@ -52,7 +71,7 @@ public class WaveSpawner : MonoBehaviour
         enemycount = 0;
       }
     }
-    if (waveIndex >= 20) 
+    else if (waveIndex >= 20) 
     {
       enemyball.GetComponent<enemy>().health += 2f;
       waitTime = 0.2f;
@@ -62,7 +81,7 @@ public class WaveSpawner : MonoBehaviour
         enemycount = 0;
       }
     }
-    if (waveIndex >= 15)
+    else if (waveIndex >= 15)
     {
       enemyball.GetComponent<enemy>().health += 1f;
       waitTime = 0.3f;
@@ -72,7 +91,7 @@ public class WaveSpawner : MonoBehaviour
         enemycount = 0;
       }
     }
-    if (waveIndex >=5)
+    else if (waveIndex >=5)
     {
       waitTime = 0.4f;
     }

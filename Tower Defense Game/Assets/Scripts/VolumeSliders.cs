@@ -21,9 +21,11 @@ public class VolumeSliders : MonoBehaviour
     public void AdjustSfxVolume (float sldSfxVolume)
     {
         audioManager.adjSfxVolume(sldSfxVolume);
+        AudioManager.buttonSound();
     }
     public void AdjustMusicVolume (float sldMusicVolume)
     {
         audioManager.adjMusicVolume(sldMusicVolume);
+        AudioManager.buttonSound();
     }
 }

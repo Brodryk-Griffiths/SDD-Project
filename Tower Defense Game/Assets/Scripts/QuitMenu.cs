@@ -10,18 +10,21 @@ public class QuitMenu : MonoBehaviour
     
         public void QuitPanel ()
     {
+        AudioManager.buttonSound();
         ExitGameUI.SetActive(true);
         PastUI.SetActive(false);
     }
     
         public void Cancel ()
     {
+        AudioManager.buttonSound();
         ExitGameUI.SetActive(false);
         PastUI.SetActive(true);     
     }
 
     public void Quit ()
     {
+        AudioManager.buttonSound();
         Debug.Log ("Quitting Game...");
         Application.Quit();
     }
