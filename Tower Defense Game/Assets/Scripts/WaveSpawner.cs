@@ -49,6 +49,10 @@ public class WaveSpawner : MonoBehaviour
     enemycount = 0;
     WaveCounterText.text = "Wave: " + waveIndex.ToString();
     enemyNo = (int)(waveIndex * 1.5f);
+    if (waveIndex >= 50)
+    {
+      enemyNo = (int)(enemyNo * 1.5f);
+    }
     for (int i = 0; i < enemyNo; i += 1)
     {
       enemycount += 1;
@@ -61,7 +65,35 @@ public class WaveSpawner : MonoBehaviour
   void SpawnEnemy()
   {
     Transform enemyball = (Transform)Instantiate(enemyPrefab, SpawnPoint.position, SpawnPoint.rotation);
-    if (waveIndex >= 30) 
+    if (waveIndex >= 60) 
+    {
+      enemyball.GetComponent<enemy>().health += 7f;
+      waitTime = 0.2f;
+      if (enemycount >= 2)
+      {
+        enemycount = 0;
+      }
+    }
+    else if (waveIndex >= 50) 
+    {
+      enemyball.GetComponent<enemy>().health += 6f;
+      waitTime = 0.2f;
+      if (enemycount >= 2)
+      {
+        enemycount = 0;
+      }
+    }
+    else if (waveIndex >= 40) 
+    {
+      enemyball.GetComponent<enemy>().health += 5f;
+      waitTime = 0.2f;
+      if (enemycount >= 2)
+      {
+        enemyball.GetComponent<enemy>().health += 1f;
+        enemycount = 0;
+      }
+    }
+    else if (waveIndex >= 30) 
     {
       enemyball.GetComponent<enemy>().health += 3f;
       waitTime = 0.2f;

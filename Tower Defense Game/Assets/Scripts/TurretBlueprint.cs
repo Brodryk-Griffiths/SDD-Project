@@ -16,4 +16,8 @@ public class TurretBlueprint
     {
         return cost / 2;
     }
+    public int GetUpSellAmount()
+    {
+        return (cost + upgradeCost)/2;
+    }
 }

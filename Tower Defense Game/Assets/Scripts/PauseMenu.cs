@@ -32,10 +32,10 @@ public class PauseMenu : MonoBehaviour
         GameIsPaused = false;
     }
 
-    public void Menu ()
+    /*public void Menu ()
     {
         AudioManager.buttonSound();
         SceneManager.LoadScene("Main Menu");
         Time.timeScale = 1f;
-    }
+    }*/
 }

@@ -7,6 +7,7 @@ public class enemy : MonoBehaviour
   private Transform target;
   private int wavepointIndex = 0;
   PlayerStats playerStats;
+  private float moneyEarnt = 2.5f;
   void Start ()
   {
     target = Waypoints.points[0];
@@ -28,7 +29,7 @@ public class enemy : MonoBehaviour
     if (health <= 0)//Destroys enemy when health zero
     {
       deleteEnemy();
-      PlayerStats.Money += 2.5f;
+      PlayerStats.Money += moneyEarnt;
       return;
     }
     
@@ -52,6 +53,24 @@ public class enemy : MonoBehaviour
     else if (health <= 5)
     {
       thisRend.material.SetColor("_Color", Color.magenta);
+    }
+    else if (health <= 6)
+    {
+      thisRend.material.SetColor("_Color", new Color(255f/255f, 140f/255f, 0f/255f));
+    }
+    else if (health <= 7)
+    {
+      thisRend.material.SetColor("_Color", Color.grey);
+      moneyEarnt = 1f;
+    }
+    else if (health <= 8)
+    {
+      thisRend.material.SetColor("_Color", Color.black);
+    }
+    else if (health <= 9)
+    {
+      thisRend.material.SetColor("_Color", Color.white);
+      speed = 17.5f;
     }
     
   }

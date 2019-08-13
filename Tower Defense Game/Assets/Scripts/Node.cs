@@ -19,7 +19,6 @@ public class Node : MonoBehaviour
 
         buildManager = BuildManager.instance;
     }
-
     public Vector3 GetBuildPosition ()
     {
         return transform.position + positionOffset;
@@ -77,7 +76,14 @@ public class Node : MonoBehaviour
 
     public void SellTurret()
     {
-        PlayerStats.Money += turretBlueprint.GetSellAmount();
+        if (isUpgraded == false)
+        {
+            PlayerStats.Money += turretBlueprint.GetSellAmount();
+        }
+        else if (isUpgraded == true)
+        {
+            PlayerStats.Money += turretBlueprint.GetUpSellAmount();
+        }
 
         Destroy(turret);
         turretBlueprint = null;
