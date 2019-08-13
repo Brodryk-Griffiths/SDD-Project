@@ -66,11 +66,13 @@ public class enemy : MonoBehaviour
     else if (health <= 8)
     {
       thisRend.material.SetColor("_Color", Color.black);
+      moneyEarnt = 1f;
     }
     else if (health <= 9)
     {
       thisRend.material.SetColor("_Color", Color.white);
-      speed = 17.5f;
+      moneyEarnt = 1f;
+      speed = 19f;
     }
     
   }
