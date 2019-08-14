@@ -4,7 +4,7 @@ public class CameraController : MonoBehaviour
 {
     private bool doMovement = true;
     public float panSpeed = 30f;
-    public float panBorderThickness = 10f;
+    public float panBorderThickness = 3f;
     public float scrollSpeed = 5f;
     public float minY = 10f;
     public float maxY = 60f;
@@ -37,10 +37,8 @@ public class CameraController : MonoBehaviour
             transform.Translate(Vector3.left * panSpeed * Time.deltaTime, Space.World);
         }
         
-        /* 
 
-        Can uncomment to enable mouse control of the camera
-
+        //moves camera with mouse at edge of screen
         if (Input.mousePosition.y >= Screen.height - panBorderThickness)
         {
             transform.Translate(Vector3.forward * panSpeed * Time.deltaTime, Space.World);
@@ -57,7 +55,7 @@ public class CameraController : MonoBehaviour
         {
             transform.Translate(Vector3.left * panSpeed * Time.deltaTime, Space.World);
         }
-        */
+        
 
         //zoom in or out using scroll
         float scroll = Input.GetAxis("Mouse ScrollWheel");

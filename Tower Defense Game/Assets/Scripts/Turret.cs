@@ -44,9 +44,12 @@ public class Turret : MonoBehaviour
     //Tracking enemies
     void UpdateTarget ()
     {
+        //creates an array of all objects with the tag of enemy
         GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag);
+        //sets initial shortest distance to infinity
         float shortestDistance = Mathf.Infinity;
         GameObject nearestEnemy = null;
+        //finds which enemy is the closes to the turret by comparing distance to the previous shortest distance
         foreach (GameObject enemy in enemies)
         {
             float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
@@ -56,6 +59,7 @@ public class Turret : MonoBehaviour
                 nearestEnemy = enemy;
             }
         }
+        //if there is a nearest enemy found, and that enemy is in the range of the turret, sets that enemy as the target
         if (nearestEnemy != null && shortestDistance <= range)
         {
             target = nearestEnemy.transform;
@@ -75,7 +79,7 @@ public class Turret : MonoBehaviour
         Quaternion lookRotation = Quaternion.LookRotation(dir);
         Vector3 rotation = Quaternion.Lerp(PartToRotate.rotation, lookRotation, Time.deltaTime * RotateSpeed).eulerAngles;
         PartToRotate.rotation = Quaternion.Euler (0f, rotation.y, 0f);
-        //calls the Shoot Subroutine each time the countdown reaches 0
+        //calls the Shoot Subroutine once, then again each time the countdown reaches 0
         if (fireCountdown <= 0f)
         {
             Shoot();
@@ -100,12 +104,10 @@ public class Turret : MonoBehaviour
     }
     
     
-    //Draw range wireframe
+    //Draw range wireframe in editor
     void OnDrawGizmosSelected ()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, range);
     }
 }
-
-//

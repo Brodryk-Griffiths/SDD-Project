@@ -17,22 +17,23 @@ public class enemy : MonoBehaviour
   }
   void Update ()
   {
+    //gets direction of next waypoint
     Vector3 dir = target.position - transform.position;
+    //moves enemy towards waypoint
     transform.Translate(dir.normalized * speed * Time.deltaTime, Space.World);
-
+    //calls function to get next waypoint when enemy reaches its current waypoint
     if (Vector3.Distance(transform.position, target.position) <= 0.5f)
     {
       GetNextWaypoint();
     }
     //Changes colour to provide visual representation of enemies health
-    
+    // Also chages variables such as eney speed and money earnt at late game
     if (health <= 0)//Destroys enemy when health zero
     {
       deleteEnemy();
       PlayerStats.Money += moneyEarnt;
       return;
     }
-    
     else if (health <= 1)
     {
       thisRend.material.SetColor("_Color", Color.red);
@@ -41,7 +42,6 @@ public class enemy : MonoBehaviour
     {
       thisRend.material.SetColor("_Color", Color.cyan);
     }
-
     else if (health <= 3)
     {
       thisRend.material.SetColor("_Color", Color.yellow);
@@ -77,6 +77,7 @@ public class enemy : MonoBehaviour
     
   }
 
+  //finds the next waypoint for the enemy to move towards (how the enmies follow the path)
   void GetNextWaypoint()
   {
     if (wavepointIndex >= Waypoints.points.Length - 1)

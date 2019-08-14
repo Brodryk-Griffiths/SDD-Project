@@ -5,15 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
-
     public static bool GameIsPaused = false;
     public GameObject pauseMenuUI;
     public GameObject UICanvas;
-    void Update()
-    {
-        
-    }
-
+    //called from pause button, stops time, hides pause and mute buttons and opens pause menu overlay
     public void Pause ()
     {
         AudioManager.buttonSound();
@@ -22,7 +17,7 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 0f;
         GameIsPaused = true;
     }
-
+    //inverse of pause, called from resume button in pause menu
     public void Resume ()
     {
         AudioManager.buttonSound();
@@ -31,11 +26,4 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1f;
         GameIsPaused = false;
     }
-
-    /*public void Menu ()
-    {
-        AudioManager.buttonSound();
-        SceneManager.LoadScene("Main Menu");
-        Time.timeScale = 1f;
-    }*/
 }

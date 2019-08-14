@@ -12,10 +12,13 @@ public class MuteState : MonoBehaviour
     {
         audioManager = AudioManager.instance;
     }
+    //function called when mute button is pressed
     public void flipButtonThing()
     {
+        //Plays button sound and calls the toggle mute functon in the audiomanager, muting or unmuting all sounds.
         AudioManager.buttonSound();
         audioManager.toggleMute(); 
+        //flips the icon on the button to represent whether or not sound is muted
         if (buttonMute == 0)
         {
             buttonUnmuted.SetActive(true);
@@ -28,7 +31,5 @@ public class MuteState : MonoBehaviour
             buttonUnmuted.SetActive(false);
             buttonMute -= 1;
         }
-        
-        Debug.Log(buttonMute);
     }
 }

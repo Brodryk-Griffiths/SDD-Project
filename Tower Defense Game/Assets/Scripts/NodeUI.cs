@@ -14,8 +14,9 @@ public class NodeUI : MonoBehaviour
     public void SetTarget(Node _target)
     {
         target = _target;
-
+        //finds location of selected node
         transform.position = target.GetBuildPosition();
+        //decides what the sell and upgrade cost will be/display depending on if the turret is upgraded.
         if (!target.isUpgraded)
         {
             upgradeCost.text = "-$" + target.turretBlueprint.upgradeCost;
@@ -28,20 +29,21 @@ public class NodeUI : MonoBehaviour
             upgradeButton.interactable = false;
             sellValue.text = "+$" + target.turretBlueprint.GetUpSellAmount();
         }
-        
-        
-        
+        //call function to enables floating menu where you can upgrade or sell selected turret
         ui.SetActive(true);
     }
+    //caleed to hide floating ui
     public void Hide()
     {
         ui.SetActive(false);
     }
+    //called from floating ui buttons to upgrade
     public void Upgrade()
     {
         target.UpgradeTurret();
         BuildManager.instance.DeselectNode();
     }
+    //called from floating ui buttons to sell
     public void Sell ()
     {
         TurretSellAudio.sellEffect(sellSound);

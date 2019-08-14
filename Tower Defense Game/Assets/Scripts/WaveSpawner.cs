@@ -42,33 +42,44 @@ public class WaveSpawner : MonoBehaviour
         StartCoroutine(SpawnWave());
       }
   }
+
   IEnumerator SpawnWave ()
   {
+    //increments teh wave number by one
     waveIndex++;
-    
+    //resets counter to 0 for start of each wave
     enemycount = 0;
+    //accesed by the UI to display the current wave on screen
     WaveCounterText.text = "Wave: " + waveIndex.ToString();
+    //determines the amount of enemies to spawn per wave
     enemyNo = (int)(waveIndex * 1.5f);
+    //increases the amount of enemies spawning after wave 49
     if (waveIndex >= 50)
     {
       enemyNo = (int)(enemyNo * 1.5f);
     }
+    //loop repeats, spawning 1 enemy each repetition, until the predetermined number of enemies have spawned.
     for (int i = 0; i < enemyNo; i += 1)
     {
+      //adds one to the counter used for increasing the health of every second or third enemy (see below)
       enemycount += 1;
+      //calls the spawn enemy function
       SpawnEnemy();
+      //waits the designated amount of time before preforming next action, in this case repeating the loop
       yield return new WaitForSeconds(waitTime);
     }
+    //once all enemys have spawned, sets thsi true so next wabe can be started if user presses button
     CanStartWave = true;
   }
-
+  //Spawns enemy 
   void SpawnEnemy()
   {
+    //instantiates the enemy inside of their spawn box
     Transform enemyball = (Transform)Instantiate(enemyPrefab, SpawnPoint.position, SpawnPoint.rotation);
     if (waveIndex >= 60) 
     {
       enemyball.GetComponent<enemy>().health += 7f;
-      waitTime = 0.2f;
+      waitTime = 0.1f;
       if (enemycount >= 2)
       {
         enemycount = 0;
@@ -115,11 +126,15 @@ public class WaveSpawner : MonoBehaviour
     }
     else if (waveIndex >= 15)
     {
+      //adjusts the health of the enemy spawned
       enemyball.GetComponent<enemy>().health += 1f;
+      //sets time to wait before next enemy is spawned
       waitTime = 0.3f;
+      //using the counter created above, increases the health of every third enemy even further
       if (enemycount >= 3)
       {
         enemyball.GetComponent<enemy>().health += 1f;
+        //resets counter to 0
         enemycount = 0;
       }
     }

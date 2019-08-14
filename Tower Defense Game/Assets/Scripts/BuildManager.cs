@@ -20,12 +20,13 @@ public class BuildManager : MonoBehaviour
 
     public void SelectNode (Node node)
     {
-        
+        //for deselecting selected node by clicking it again
         if (selectedNode == node)
         {
             DeselectNode();
             return;
         }
+        //sets this node as the selected node
         selectedNode = node;
         turretToBuild = null;
 
@@ -37,11 +38,12 @@ public class BuildManager : MonoBehaviour
         nodeUI.Hide();
         selectedNode = null;
     }
+    //selects the turret to be built... called from shop buttons
     public void SelectTurretToBuild(TurretBlueprint turret)
     {
-        
         turretToBuild = turret;
+        //Ensures a node cannot be selected at the same time as a turret to build
         DeselectNode();
-        //AudioManager.buttonSound();
+        AudioManager.buttonSound();
     }
 }

@@ -2,7 +2,6 @@
 
 public class Shop : MonoBehaviour
 {
-
     public TurretBlueprint standardTurret;
     public TurretBlueprint laserTurret;
     BuildManager buildManager;
@@ -11,6 +10,7 @@ public class Shop : MonoBehaviour
     {
         buildManager = BuildManager.instance;
     }
+    //selects which turret user wishes to build when they click on the appropriate turret icon in the shop
     public void SelectStandardTurret ()
     {
         Debug.Log ("Standard Turret Purchased");

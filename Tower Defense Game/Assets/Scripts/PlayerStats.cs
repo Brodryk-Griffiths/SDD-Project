@@ -16,12 +16,9 @@ public class PlayerStats : MonoBehaviour
     void Awake ()
     {
         instance = this;
-
-        
     }
     void Start ()
     {
-        
         Money = startMoney;
     }
 
@@ -30,7 +27,6 @@ public class PlayerStats : MonoBehaviour
         //Used to display stats on UI
         PlayerMoneyText.text = "Player Money: $" + Money.ToString();
         PlayerHealthText.text = "Health: " + PlayerHealth.ToString();
-
 
         if (PlayerHealth <= 0)//may skip zero ie take 2 hp when only have 1 remaining so cannot be == 0
         {
